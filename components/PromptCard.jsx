@@ -4,11 +4,12 @@ import Image from "next/image"
 import { useSession } from "next-auth/react"
 import { usePathname, useRouter } from "next/navigation"
 
-export default function PromptCard ({ post, handleTagClick, handleEdit, handleDelete}) {
+export default function PromptCard ({ post , handleTagClick, handleEdit, handleDelete}) {
   const [copied, setCopied] = useState("");
   const pathName = usePathname()
   const { data: session } = useSession()
   const router = useRouter()
+  const [highlight, setHighLight] = useState("")
 
   const handleCopy = ()=>{
     setCopied(post.prompt);
@@ -16,10 +17,15 @@ export default function PromptCard ({ post, handleTagClick, handleEdit, handleDe
       setTimeout(()=> setCopied(""), 3000)
   }
 
+
   return (
     <div className='prompt_card'>
       <div className="flex justify-between items-start gap-5">
-        <div className="flex-1 flex justify-start items-center gap-3 cursor-pointer">
+        <div className="flex-1 flex justify-start items-center gap-3 cursor-pointer"
+          onClick={()=>{
+            session?.user.id && router.push(`/profile/${post.creator._id}/${post.creator.username}`)
+          }}
+        >
           <Image
           src = {post.creator.image}
           alt = 'user_image'
@@ -52,13 +58,15 @@ export default function PromptCard ({ post, handleTagClick, handleEdit, handleDe
         </div>
       </div>
 
-      <p className="my-4 font-satoshi text-sm text-left text-gray-700">{post.prompt}</p>
-      <p className="font-inter text-sm text-left blue_gradient cursor-pointer"
+      <p className="my-4 font-satoshi text-sm text-left text-gray-700">
+        {post.prompt}
+      </p>
+      <p className="font-inter text-sm text-left blue_gradient hover:text-red-300 cursor-pointer"
       onClick={()=>
         handleTagClick && handleTagClick(post.tag)
       }>#{post.tag}</p>
 
-      {(session?.user.id === post.creator._id) && (pathName === '/profile') && (
+      {(session?.user.id === post.creator._id) && (pathName === `/profile/${session?.user.id}/${post.creator.username}`) && (
         <div className="mt-5 flex-center gap-4 border-t border-gray-100 pt-3">
           <p
           className="font-inter text-sm green_gradient cursor-pointer"

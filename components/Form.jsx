@@ -64,7 +64,7 @@ const Form = ({type, post, setPost, submitting,
             disabled={submitting}
             className='px-5 py-1.5 text-sm bg-primary-orange
             rounded-full text-white'>
-              {submitting ? ((type === 'Edit ') ? `${type.trimEnd()}ing...` : `${type.slice()}...`) : type}
+              {submitting ? ((type === 'Edit ') ? `${type.trimEnd()}ing...` : `${type.trimEnd()}ing...`) : type}
             </button>
         </div>
       </form>
