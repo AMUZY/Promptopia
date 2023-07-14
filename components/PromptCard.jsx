@@ -9,7 +9,6 @@ export default function PromptCard ({ post , handleTagClick, handleEdit, handleD
   const pathName = usePathname()
   const { data: session } = useSession()
   const router = useRouter()
-  const [highlight, setHighLight] = useState("")
 
   const handleCopy = ()=>{
     setCopied(post.prompt);
