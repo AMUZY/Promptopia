@@ -53,7 +53,7 @@ const Nav = () => {
               Sign Out
             </button>
 
-            <Link href = "/profile">
+            <Link href = {`/profile/${session?.user.id}/${session?.user.id}`}>
               <Image src = {session?.user.image}
               width = {37}
               height={37}
@@ -103,7 +103,7 @@ const Nav = () => {
                     settoggleDropdown(false)
                   }>
                     <Link 
-                    href = "/profile"
+                    href = {`/profile/${session?.user.id}/${session?.user.id}`}
                     className='dropdown_link'
                     onClick={()=>
                       settoggleDropdown(false)
