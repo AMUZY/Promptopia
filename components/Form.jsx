@@ -55,6 +55,8 @@ const Form = ({type, post, setPost, submitting,
           />
         </label>
 
+        {console.log(`${(type.substr(0,type.length-2).trimEnd())}ing...`)}
+
         <div className="flex-end mx-3 mb-5 gap-4">
             <Link href="/" className='text-gray-500'>
             Cancel
@@ -64,7 +66,7 @@ const Form = ({type, post, setPost, submitting,
             disabled={submitting}
             className='px-5 py-1.5 text-sm bg-primary-orange
             rounded-full text-white'>
-              {submitting ? ((type === 'Edit ') ? `${(type.substr(0,type.length-2).trimEnd())}ing...` : `${type.trimEnd()}ing...`) : type}
+              {submitting ? ((type === 'Edit ') ? `${type.trimEnd()}ing...` : `${(type.substr(0,type.length-2).trimEnd())}ing...`) : type}
             </button>
         </div>
       </form>
