@@ -8,7 +8,6 @@ const PromptCardList = ({ data, handleTagClick }) => {
   return (
     <div className='mt-16 mx-16 prompt_layout'>
       {data.map((post)=>{
-        console.log(post)
         return (
           <PromptCard 
             key = {post._id}
@@ -36,16 +35,18 @@ const Feed = () => {
     return str1.toLowerCase().includes(str2.toLowerCase()) 
   }
 
+  let data = {};
+
   useEffect(()=>{
     const fetchPosts = async () => {
       const response = await fetch('api/prompt')
-      const data = await response.json();
+      data = await response.json();
       setOrigPosts(data)
       setPosts(data)
     }
 
     fetchPosts();
-  }, [])
+  }, [data])
 
   let tempPosts = []
   useEffect(()=>{
