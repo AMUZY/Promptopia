@@ -27,7 +27,6 @@ const Feed = () => {
 
   const handleSearchChange = (e) => {
     setSearchText(e.target.value);
-    
   }
 
   // Function to check if str2 exists in str1. Returns Boolean
@@ -35,18 +34,17 @@ const Feed = () => {
     return str1.toLowerCase().includes(str2.toLowerCase()) 
   }
 
-  let data = {};
-
   useEffect(()=>{
     const fetchPosts = async () => {
-      const response = await fetch('api/prompt')
-      data = await response.json();
+      const response = await fetch('/api/prompt')
+      const data = await response.json();
       setOrigPosts(data)
       setPosts(data)
     }
 
+    console.log('UseEffect 1 just ran')
     fetchPosts();
-  }, [data])
+  }, [])
 
   let tempPosts = []
   useEffect(()=>{
@@ -59,6 +57,8 @@ const Feed = () => {
     }else{
       setPosts(origposts)
     }
+
+    console.log('UseEffect 2 just ran')
   },[searchText])
 
   return (
