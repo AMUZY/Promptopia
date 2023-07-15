@@ -42,7 +42,6 @@ const Feed = () => {
       setPosts(data)
     }
 
-    console.log('UseEffect 1 just ran')
     fetchPosts();
   }, [])
 
@@ -58,7 +57,6 @@ const Feed = () => {
       setPosts(origposts)
     }
 
-    console.log('UseEffect 2 just ran')
   },[searchText])
 
   return (
