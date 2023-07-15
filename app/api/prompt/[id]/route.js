@@ -27,7 +27,7 @@ export const PATCH = async ( request , { params }) => {
 
         existingPrompt.prompt = prompt;
         existingPrompt.tag = tag;
-        console.log({prompt,tag})
+        
 
         await existingPrompt.save();
 
